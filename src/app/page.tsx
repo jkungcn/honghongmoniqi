@@ -109,7 +109,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-pink-200 via-pink-300 to-pink-200 opacity-80" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-pink-600 mb-1">哄哄模拟器</h1>
+            <h1 className="text-4xl font-bold mb-1" style={{ color: '#2a47d5' }}>哄哄模拟器</h1>
             <p className="text-pink-500 text-base">10轮内把 TA 哄好！</p>
           </div>
         </div>
