@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int           @id @default(autoincrement())
+  username  String        @unique
+  password  String
+  createdAt DateTime      @default(now()) @db.Timestamptz(6)
+  
+  gameRecords GameRecord[]
+  leaderboard Leaderboard?
+  
+  @@index([username])
+}
+
+model GameRecord {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  scenario   String
+  finalScore Int
+  result     String   // 'success' or 'failure'
+  playedAt   DateTime @default(now()) @db.Timestamptz(6)
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([playedAt])
+}
+
+model Leaderboard {
+  id         Int      @id @default(autoincrement())
+  userId     Int      @unique
+  username   String
+  bestScore  Int
+  scenario   String
+  achievedAt DateTime @default(now()) @db.Timestamptz(6)
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([bestScore])
+}
+
+model BlogPost {
+  id        Int       @id @default(autoincrement())
+  title     String
+  summary   String    @db.Text
+  content   String    @db.Text
+  emoji     String?
+  slug      String?
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  
+  @@index([slug])
+  @@index([createdAt])
+}

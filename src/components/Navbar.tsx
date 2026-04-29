@@ -27,6 +27,12 @@ export function Navbar() {
                 {/* 已登录状态 */}
                 <div className="flex items-center gap-2">
                   <Link
+                    href="/admin"
+                    className="text-gray-600 hover:text-pink-500 text-sm font-medium transition-colors px-3 py-1.5 rounded-full hover:bg-pink-50"
+                  >
+                    后台
+                  </Link>
+                  <Link
                     href="/profile"
                     className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-pink-50 transition-colors"
                   >
