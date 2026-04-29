@@ -5,9 +5,9 @@
  */
 
 import { getSupabaseClient } from "@/storage/database/supabase-client";
-import type { Tables } from "@/storage/database/types";
+import type { TableRow } from "@/storage/database/types";
 
-type BlogPost = Tables["blog_posts"];
+type BlogPost = TableRow<"blog_posts">;
 
 // 现有文章数据
 const EXISTING_POSTS: Omit<BlogPost, "id" | "created_at">[] = [
