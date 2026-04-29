@@ -57,19 +57,17 @@ export default function AdminGameRecordsPage() {
     currentPage: number = page
   ) => {
     setLoading(true);
-    try {
-      const params = new URLSearchParams({
-        search: searchTerm,
-        result: result,
-        page: currentPage.toString(),
-        pageSize: pageSize.toString(),
-      });
+   try {
+  const params = new URLSearchParams();
+  params.append('search', searchTerm);
+  params.append('result', result);
+  params.append('page', currentPage.toString());
       const res = await fetch(`/api/admin/game-records?${params}`);
-      const result = await res.json();
-      if (result.success) {
-        setData(result.data);
+      const response = await res.json();
+      if (response.success) {
+        setData(response.data);
       } else {
-        console.error(result.error || "获取游戏记录失败");
+        console.error(response.error || "获取游戏记录失败");
       }
     } catch (error) {
       console.error("获取游戏记录失败:", error);
